@@ -1,0 +1,53 @@
+Генерация SSH-ключей
+
+создать папку /home/<ваш_пользователь>/.ssh/, если ее еще нет
+(у меня она находиться по адресу home/.ssr)
+перейти в эту папку 
+ cd ~/.ssh
+
+генерация ключей
+ cd ~/.ssh && ssh-keygen -t rsa -b 4096 -C "Мой ключ"    //ssh-keygen - собственно команда
+=>Generating public/private rsa key pair.
+The -C flag adds a comment in the key in case you have multiple of them and want to tell which is which. It is optional.
+>>появится руководство:
+Enter file in which to save the key (/home/<ваш_пользователь>/.ssh/id_rsa):      //id_rsa- имя ключа, можем его поменять
+Жмем 3 раза Enter.
+
+открыть папку и посмотреть находящиеся в ней файлы. Среди них должны быть 2 новых файла-ключа.
+ls ~/.ssh 
+
+открыть содержание публичного ключа:
+cat mykey.pub           //mykey.pub- имя ключа(файла)
+или
+cat ~/.ssh/id_rsa.pub   //перейти в папку ~/.ssh/ и скопировать публичный ключ одной командой
+
+
+
+=== https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html
+https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2
+
+https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html
+
+Step 1. ssh-keygen 
+Step 2. Add the key to the ssh-agent накомпютере (!)
+ eval `ssh-agent` 
+ ssh-add ~/.ssh/<private_key_file>
+
+Step 3. Add the public key to your Bitbucket settings
+ cat ~/.ssh/id_rsa.pub   //открыть файл с публичным ключем
+
+вставить содержимое файла публичного ключа в окно ВВ
+ВВ вышлет письмо для подтверждения на мой email
+
+Step 4.
+Вернитесь в окно терминала и проверьте свою конфигурацию и имя пользователя, введя следующую команду:
+$ ssh -T git@bitbucket.org
+Командное сообщение говорит вам, какая из ваших учетных записей Bitbucket может войти в систему с этим ключом:
+conq: logged in as emmap1.
+You can use git or hg to connect to Bitbucket. Shell access is disabled.
+
+Step 5.
+Теперь, когда у вас настроен ключ SSH, используйте URL-адрес SSH при следующем клонировании репозитория. 
+Если у вас уже есть хранилище, которое вы клонировали по HTTPS, измените удаленный URL-адрес вашего хранилища, чтобы использовать его SSH URL.
+
+

@@ -1,0 +1,133 @@
+https://github.com/nvie/gitflow
+$ sudo apt-get install git-flow
+
+команды: https://github.com/nvie/gitflow/wiki/Command-Line-Arguments
+
+Ветки:
+feature  \\ обычно существуют в репозиториях разработчиков, но не в главном репозитории (origin).
+=develop
+--release
+=master   \\ находиться в состоянии production-ready. Каждый коммит в master — это по определению новый релиз
+--hotfix  \\ для правки критических проблем в релизной версии мастера
+
+
+
+А) feature       \\ветка фичи отходит от ветки "develop"
+$ git checkout -b myfeature develop  \\ Switched to a new branch "myfeature"
+
+$ git checkout develop  \\ Switched to branch 'develop'
+$ git merge --no-ff myfeature  \\ мерж фич-ветки в develop
+
+\\ --no-ff   - вынуждает Git всегда создавать новый объект коммита при слиянии
+это позволяет элементарно отменить в develop влитую в него функциональность целиком 
+
+Updating ea1b82a..05e9557 (Отчёт об изменениях)
+
+$ git branch -d myfeature  \\ Deleted branch myfeature (was 05e9557)
+$ git push origin develop
+
+
+
+В) release  \\ Ветвь релиза создаётся из develop.
+release ветвь может существовать до тех пор, пока новый релиз окончательно не будет готов к выпуску. В течение этого времени к этой ветви (а не к develop) могут быть добавлены исправления найденных багов. Но добавление крупных новых изменений в эту ветвь строго запрещено. Они всегда должны вливаться в ветвь разработки (develop) и ждать следующего большого релиза.
+
+$ git checkout -b release-1.2 develop  \\ Switched to a new branch "release-1.2"
+
+$ ./bump-version.sh 1.2  \\ выставили номер версии
+Files modified successfully, version bumped to 1.2
+= изменяем некоторые файлы
+
+$ git commit -a -m "Bumped version number to 1.2"  \\ [release-1.2 74d9424] Bumped version number to 1.2
+1 files changed, 1 insertions(+), 1 deletions(-)
+
+= Завершение релиза
+$ git checkout master  \\ Switched to branch 'master'
+$ git merge --no-ff release-1.2  \\ Merge made by recursive
+(Отчёт об изменениях)
+$ git tag -a 1.2  \\ метим точку в мастере тегом от релиза
+
+
+$ git checkout develop  \\ Switched to branch 'develop'
+$ git merge --no-ff release-1.2  \\ Merge made by recursive
+(Отчёт об изменениях)
+
+$ git branch -d release-1.2  \\ Deleted branch release-1.2 (was ff452fe)
+
+
+
+
+С) hotfix branches  \\  для немедленно исправления нежелательного поведения производственной версии продукта
+\\ создаются из главной (master) ветви
+
+$ git checkout -b hotfix-1.2.1 master  \\ Switched to a new branch "hotfix-1.2.1"
+= изменяем некоторые файлы
+$ git commit -a -m "Bumped version number to 1.2.1"  \\ [hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1
+
+1 files changed, 1 insertions(+), 1 deletions(-)
+$ git commit -m "Fixed severe production problem et all"
+
+= Закрытие ветви исправлений
+$ git checkout master  \\ Switched to branch 'master'
+$ git merge --no-ff hotfix-1.2.1  \\ Merge made by recursive.
+(Отчёт об изменениях)
+$ git tag -a 1.2.1
+
+$ git checkout develop  \\ Switched to branch 'develop'
+$ git merge --no-ff hotfix-1.2.1  \\ Merge made by recursive.
+(Отчёт об изменениях)
+
+$ git branch -d hotfix-1.2.1  \\ Deleted branch hotfix-1.2.1 
+
+
+
+
+ИСПОЛЬЗОВАНИЕ git-flow
+
+git flow init  \\ сделать внутри существующего git-репозитория ИЛИ в пустой папке.
+
+git flow feature start MYFEATURE  \\ создаём новую ветку "feature/MYFEATURE", основанную на ветке "develop", и переключаемся на неё.
+...делаем ряд обычных коммитов...
+git flow feature finish MYFEATURE  \\ Слияние ветки MYFEATURE в "develop", Удаление ветки фичи, Переключение обратно на ветку "develop"
+
+git flow feature publish MYFEATURE  \\ push to origin
+ отправим пул-реквест. Если зайти на гитхаб, можно его увидеть.
+Теперь, нажмите кнопку Compare & pull request: Здесь можно добавить комментарий к пул-реквесту.
+git flow feature pull origin MYFEATURE
+git flow feature track MYFEATURE  \\ отслеживать фичу в репозитории origin
+
+
+
+(git flow release  \\ создаёт ветку релиза, ответляя от ветки "develop")
+git flow release start RELEASE [BASE]  \\ [BASE]-коммит в виде его хеша sha-1, чтобы начать релиз с него. Этот коммит должен принадлежать ветке "develop".
+
+git flow release publish RELEASE \\ push to origin
+git flow release track RELEASE \\ отслеживать релиз в репозитории origin
+
+git flow release finish RELEASE
+git push --tags  \\ отправить изменения в тегах
+
+
+
+git flow hotfix start VERSION [BASENAME]  \\ При желании можно указать BASENAME-коммит, от которого произойдёт ответвление.
+\\ VERSION определяет имя нового, исправленного релиза.
+git flow hotfix finish VERSION  \\ Когда исправление готово, оно сливается обратно в ветки "develop" и "master". Кроме того, коммит в ветке "master" помечается тегом с версией исправления.
+
+
+............................
+Добавление git_flow в уже имеющийся репозиторий, скаченного с gitBacketa:
+
+git flow init
+
+Branch name for production releases: [master] (!!!!!!!!!!!!!!!!! <==)
+Branch name for "next release" development: [dev] 
+
+How to name your supporting branch prefixes?
+Feature branches? [feature/] 
+Bugfix branches? [bugfix/]   -?
+Release branches? [release/] 
+Hotfix branches? [hotfix/] 
+Support branches? [support/] -?
+Version tag prefix? [] 
+
+
+

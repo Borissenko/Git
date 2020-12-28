@@ -1,0 +1,99 @@
+= РАБОТА с GitLab =
+
+1. Создаем локальный реп, опираясь на существующую папку с нашими файлами
+git init
+
+2. создаем  .gitignore 
+.idea/
+.vscode/
+node_modules/
+dist/
+npm-debug.log
+package-lock.json
+
+3.  git add .
+    git commit -m "Add full site" -a
+
+4. создаем пустой проект на gitlab, НЕ инициируя readMe!!!
+
+5. Заливаем локальный реп на gitlab
+а)добавим ссылку на удаленный репозиторй, чтобы с ним было проще работать.
+>git remote add wordpress git@gl.serveradmin.ru:root/wordpress.git 
+// Адрес git@gl.serveradmin.ru:root/wordpress.git взят из информации о проекте в gitlab, там где SHH-ключный адрес указан
+>git remote add origin https://gitlab.com/016/my_5.git  
+// где https://gitlab.com/016/my_5.git - адрес удаленного реп-я
+//origin или wordpress - прозвище нащего реп-я находящегося на gitlab
+
+Смотрим информацию о путях добавленного репозитория:
+#git remote show wordpress или 
+#git remote -v
+=>
+* remote wordpress
+ Fetch URL: git@gl.serveradmin.ru:root/wordpress.git
+ Push URL: git@gl.serveradmin.ru:root/wordpress.git
+ HEAD branch: (unknown)
+
+б) загрузим локальный проект, который мы только что создали в удаленный репозиторий на gitlab.
+>git push -u wordpress master  \\ master - на какую ветку GitHab'a пушим
+>git push -u origin --all
+
+
+г) вносим изменения в локальном проекте и далее обновляем удаленный реп-й
+git push -u origin --all   <<<=== развернуто
+Username for 'https://gitlab.com': 016
+Password for 'https://016@gitlab.com': 548655618
+
+или просто
+git push
+
+д)после создания в локальном реп-рии новой ветки Borissenko пушим ее, тоже создавая в Gitlab новую ветку, а не в родительскую ветку Gitlab'a
+git push --set-upstream origin Borissenko
+или тоже самое, но сокращенной командой
+git push -u origin Borissenko
+
+е)можем изменить прозвище удаленного реп-я
+git remote rename origin new_name
+
+
+6.Клонировать с Gitlab
+git clone --single-branch -b Borisenko https://gitlab.com/neurotrend/pyeye_front.git  //склонируется только ветка Gitlab Borisenko
+git clone https://gitlab.com/neurotrend/pyeye_front.git   //=>склонируется только ветка Gitlab master (????! ДА!!)
+
+7.Удалить проект с Gitlab 
+- открыть Settings -> General -> Advanced и выбрать Remove Project в самом низу страницы.
+
+
+
+\\\\\\\
+Что выводиться при создании нового реп-я на gitLab:
+
+=Create a new repository
+git clone https://gitlab.com/016/git_3.git
+cd git_3
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+=Push an existing folder
+cd existing_folder
+git init
+git remote add origin https://gitlab.com/016/git_3.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+=Push an existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://gitlab.com/016/git_3.git
+git push -u origin --all
+git push -u origin --tags
+
+
+
+
+
+
+
+

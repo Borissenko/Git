@@ -1,0 +1,30 @@
+Git in PHPStorm
+
+1.  File -> Settings в левом боковом меню выбираем Version control и вкладку Git, нам необходимо убедиться что phpstorm автоматически подхватил путь установки Git и выбран правильный .exe файл
+/usr/bin/git
+
+2а. VCS -> Import into Version Control -> Create Git Repository ...
+2b. создаем .gitignore
+.idea/
+node_modules/
+front/bundles/
+package-lock.json
+
+3. ctrl + k  //commit, do it without add
+4. в нижнем правом углу PHPStorm, в меню Git выбираем New Branch
+5. hear is checkout and merg
+ - merge- in to current brunch
+
+6. Подключаем удаленный репозиторий github.com.
+Для этого заходим на github.com, создаем новый репозиторий и после создания копируем ссылку на вновь созданный репозиторий.
+В верхнем меню в пункте VCS -> Git -> Remotes 
+вставляем скопированную нами ссылку на удаленный репозиторий.
+Then: Push (Ctrl + Shift + K)
+
+
+\\\
+галочка "Amend commit" при коммите -  объединиться с предыдущим коммитом, а не как самостоятельный последующий коммит
+
+
+
+
