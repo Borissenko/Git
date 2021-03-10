@@ -109,6 +109,7 @@ git branch –m nameOldBr nameNewBr  //переименование ветки, 
 git branch -m nameNewBr            //поменять имя ТЕКУЩЕЙ ветки
 
 git branch –d name                 //удаление ветки
+git branch -D name
 push origin --delete my            //удаление ветки на УДАЛЕННОМ репертории
 
 
@@ -121,6 +122,10 @@ git checkout -b nameNewBr             //создать новую ветку с 
 git checkout -b nameNewBr we9055c     //создать новую ветку с we9055c-коммита и перейти на нее
 
 Изменения в рабочей директории — как индексированные, так и неиндексированные, но незакоммеченные — пока не принадлежат ни одной ветке. 
+
+//Переключение на ветки СКАЧЕННОГО репа.
+git co remotes/origin/dev_nick  - rown, буде переключение с detached_head, т.к. переключаемся НЕ на локальную ветку.
+git co dev_nick                 - yes
 
 
 
@@ -151,19 +156,25 @@ git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --grap
 //MERGE ВЕТОК (всасывание и интеграция)
 >>git co master
 >>git merge br2               //текущая ветка master всасывает ветку br2 (br2 вливаем в текущую ветку)
-git merge br2 --no-ff    // --no-ff: при слиянии по сценарию fast forward быстрого слияния вперед не произойдет, всегда будет создан новый commit.
+git merge br2 --no-ff    //ветка br2 сохранится обособленной, будет создан новый, объединяющий commit.
 >>git branch -d br2     //удаление ветки br2
 
 git merge current master  //не всасывание, а иньекция себя в master. marge current to master. Не сработало...
 
-устраняем конфликт
+устраняем КОНФЛИКТ
 git add ./src/CONFLICT_file_ONLY  //ONLY(!) CONFLICT_file
 или
 git add src/CONFLICT_file_ONLY  //ONLY(!) CONFLICT_file
 git ci -m 'merge' -a
 
-или прерываем продолжение мержа с откатом назад
+или прерываем продолжение мержа, не устраняя конфликт, с откатом до состояния №перед мержем"
 git merge abort
+
+
+# Вариант мержа №2
+git merge --no-commit br2
+- Смержим, но комит автоматически не сделается. Нужно его сделать самому.
+- Точки коммитов, сделанные на ветке br2, не перенесутся. (!).
 
 
 
