@@ -34,5 +34,21 @@ If needed, anytime you can delete the cache record by :
 
 git config --global --unset credential.helper
 
-my github_token
+
+# my github_token
 >>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
+
+
+# Run this command inside your project directory if project was cloned before 13 Aug 2020.
+If push failed, then do this
+>git remote set-url origin git@github.com:{user_id}/{project_name}.git
+
+And push again. Then it's work.
+
+
+
+
+
+
+
+
