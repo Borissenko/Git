@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b161e13c-8da0-4e45-83b6-0b54ed7aad04" name="Changes" comment="" />
+    <list default="true" id="b161e13c-8da0-4e45-83b6-0b54ed7aad04" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SSH-ключи.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSH-ключи" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Support for password authentication.md" beforeDir="false" afterPath="$PROJECT_DIR$/Support for password authentication.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +30,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -44,6 +50,8 @@
       <updated>1629016397396</updated>
       <workItem from="1629016404810" duration="1003000" />
       <workItem from="1629037370756" duration="1130000" />
+      <workItem from="1629100580085" duration="1005000" />
+      <workItem from="1629106377548" duration="3852000" />
     </task>
     <task id="LOCAL-00001" summary="15aug21">
       <created>1629038048228</created>
@@ -66,14 +74,23 @@
       <option name="project" value="LOCAL" />
       <updated>1629038397331</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="16=">
+      <created>1629100708850</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629100708850</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="15aug21" />
-    <option name="LAST_COMMIT_MESSAGE" value="15aug21" />
+    <MESSAGE value="16=" />
+    <option name="LAST_COMMIT_MESSAGE" value="16=" />
   </component>
 </project>
