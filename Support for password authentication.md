@@ -35,8 +35,11 @@ If needed, anytime you can delete the cache record by :
 git config --global --unset credential.helper
 
 
+
+
 # my github_token
 >>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
+
 
 
 # Run this command inside your project directory if project was cloned before 13 Aug 2020.
