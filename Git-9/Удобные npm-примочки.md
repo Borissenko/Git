@@ -1,27 +1,5 @@
 # = Удобные примочки при работе с терминалом и  git'ом =
 
-# ALIASES
-git config --list
-
-git config --global alias.graph "log --all --graph --decorate --oneline -M -C" 
-git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
-git config --global alias.tags "tag -n" 
-git config --global alias.st status
-git config --global alias.ci commit
-git config --global alias.di diff
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global color.ui true
-
-
-======
-# СОКРАЩЕНИЯ в командах git
-git config --global alias.last 'log -1 HEAD'  //last- сокращение, 'log -1 HEAD'- сокращаемая команда
-git last                                      //запуск команды
-
-## сокращение для 2 команд (add+commit):
-git config --global alias.adcom '!git add -A && git commit'
-
 
 # параметры компьютера
 sudo apt install htop  
@@ -43,12 +21,15 @@ echo '<?php phpinfo(); ?>' > /var/www/demo/info.php  //создали файл i
 
 curl localhost  //Консоль как броузер: запускаем "броузер" по адресу localhost и распечатываем содержимое странички в консоле.
 
+
 ## какие процессы запущены
 >ps -all -x
+
 
 ## какие пакеты установлены глобально
 npm ls -g --depth=0
 npm ls --depth=0        //глобально и локально
+
 
 ## создать файл package.json
 >npm init
@@ -66,7 +47,7 @@ sudo -s  //  В этом случае домашний каталог не см�
 
 
 
-# изменить права доступа к файлу
+# ПРАВА ДОСТУПА к файлу
 sudo chmod -R -f 777 ./folder  или fileName
 
 
