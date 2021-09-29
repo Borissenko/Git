@@ -10,6 +10,15 @@ unalias -a          //удаление всех синонимов
 
 
 # My alias
+
+# git graph
+gg ()
+{
+	git log --all --graph --decorate --oneline -M -C
+}
+
+
+# ==commit
 gc ()
 {
 	git add -A && git commit -m "$1"
@@ -22,18 +31,25 @@ gca ()
 	git add -A && git commit --amend --no-edit
 }
 
-# git graph
-gg ()
+# delete the last commit with keep changes
+gcd ()
 {
-	git log --all --graph --decorate --oneline -M -C
+	git reset --soft HEAD~
+}
+
+# delete the last commit with NO keep changes
+gcdd ()
+{
+	git reset --hard @~
 }
 
 
-# git gco
-gco ()
+# git go to branch
+go ()
 {
 	git checkout "$1"
 }
+
 
 
 # git amend_commit & go to new branch
@@ -43,17 +59,61 @@ gcb ()
 }
 
 
-# git new branch
-gb ()
+
+# create and go to new branch
+gob ()
 {
 	git checkout -b "$1"
 }
 
 
+# ==branch
+# git branch 
+bb()
+{
+	git branch
+}
+
+
+# git branch rename
+br()
+{
+	git branch -m "$1"
+}
+
+
 # git branch delete
-gbd ()
+bd ()
+{
+	git branch -d "$1"
+}
+
+
+# git branch delete D
+bdd ()
 {
 	git branch -D "$1"
+}
+
+
+# ==push
+# git push
+gp ()
+{
+	git push
+}
+
+# git push -f
+gpp ()
+{
+	git push -f
+}
+
+
+# git go to branch & push upstream
+gopp ()
+{
+	git checkout "$1" & git push --set-upstream origin "$1"
 }
 
 
@@ -62,6 +122,9 @@ status777 ()
 {
 	sudo chmod -R -f 777 "$1"
 }
+
+
+
 
 
 //"$1" - это fileName
@@ -73,9 +136,14 @@ status777 fileName
 
 
 # Где декларируем
-nano ~/.bashrc
+home/Nick/.bashrc
+или
+~/.bashrc
 
-в низу файла прописываем наш alias
+## снять ограничение на запись
+sudo chmod -R -f 777 .bashrc
+
+## в низу файла прописываем наш alias
 Сохраняем изменения и закрываем файл. Для этого нажмите 
 >Ctrl+X               // откроется запрос на сохранение изменений в файле. Жмем:
 >y
