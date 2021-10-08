@@ -80,6 +80,8 @@ npm i concurrently --save-dev
 
 
 
+
+
 # PHPStorm  
 ## Создаем файл
 //Можно указывать и абсолютный, и относительный путь.
@@ -89,7 +91,12 @@ touch Desktop/fileHere.vue
 phpstorm --line 3 ~/Desktop/fileHere.vue
 
 ## DIFF 2 файлов В PHPStorm'e командой из консоли
-phpstorm diff ~/Desktop/fileHere.vue Home.vue
+phpstorm diff ~/Desktop/fileHere.vue Home.vue 
+
+phpstorm diff ~/Documents/URF_valid.vue  ~/Documents/URF_confirm.vue
+
+
+
 
 ## MERGE
 phpstorm merge path1 path2 path3 output_file_path	
