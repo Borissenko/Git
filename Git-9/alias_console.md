@@ -74,6 +74,12 @@ bb()
 	git branch
 }
 
+# показать все ветки, в т.ч. удаленные
+bba()
+{
+	git branch -a
+}
+
 
 # git branch rename
 br()

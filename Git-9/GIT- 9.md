@@ -20,6 +20,15 @@ git reset --soft HEAD^
 git rebase -i HEAD~4 //обработать(сжать) 4 последних коммита. См ниже rebase.
 
 
+git status --ignored              //какие файлы игнорируются
+
+git rm --cached path/to/file -r       //удаление папки/файла из индекса гита
+git rm --cached source/frontend/nuxt/node_modules -r
+
+Временно игнорировать изменения в файле можно командой:
+git update-index --assume-unchanged <file>
+Отключается командой:
+git update-index --no-assume-unchanged <file>
 
 
 =======================
@@ -109,12 +118,13 @@ git branch –m nameOldBr nameNewBr   //переименование ветки,
 git branch -m nameNewBr             //  <<<<<< поменять имя ТЕКУЩЕЙ ветки
 
 git push origin :oldName newName    //  <<<<<< поменять имя УДАЛЕННОЙ ветки, находясь на локальной, УЖЕ ПЕРЕИМЕНОВАННОЙ.
-git push origin HEAD                //для пуша последующего коммита потребуется сделать так.
+git push origin HEAD                //  <<<<<< для пуша последующего коммита потребуется сделать так.
 
 
 git branch –d name                 //удаление ветки
 git branch -D name
 push origin --delete my            //удаление ветки на УДАЛЕННОМ репертории
+push origin :<branchName>          //удаление ветки на УДАЛЕННОМ репертории
 
 
 //ВЕТВИ-ПЕРЕКЛЮЧЕНИЕ
