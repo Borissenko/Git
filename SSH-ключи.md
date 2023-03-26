@@ -4,6 +4,7 @@
 если ее еще нет,
 перейти в нее
 >cd ~/.ssh
+> (/c/Users/borisenko/.ssh/id_rsa) for Windows_10
 
 #2. Генерируем ключевую пару 
 ssh-keygen -t ed25519 -C "myKeyName"

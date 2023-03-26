@@ -1,0 +1,61 @@
+
+Littleriver_5G
+WbuD12vw
+WbuD12vw
+
+
+
+TTL 
+
+0. решение <<<
+$ sudo su
+# echo "65" > /proc/sys/net/ipv4/ip_default_ttl
+
+
+= ПРОВЕРКА =
+ping 127.0.0.1
+
+
+
+Ubuntu - 64
+andpoid - тоже 64
+Windows - 128
+
+TTL имеет свойство уменьшаться на 1 при проходе через узел (в нашем случае это раздающее устройство),
+
+поэтому нужно указать значение TTL=65 (на 1 больше, 65 вместо 64), 
+а если Windows — то указываем TTL=129 (вместо 128)
+
+
+
+
+
+//////////////////////
+To change:
+sudo sysctl -w net.ipv4.ip_default_ttl=65
+
+echo 65 | sudo tee /proc/sys/net/ipv4/ip_default_ttl
+
+sudo bash -c 'echo 65 > /proc/sys/net/ipv4/ip_default_ttl'
+
+
+
+/etc/sysctl.conf
+net.ipv4.ip_default_ttl=129     << такой строчки у Убунты_20 - НЕТ. ))
+
+
+
+
+.................
+
+Добавляем настройку в файл «/etc/sysctl.conf»
+
+sudo echo net.ipv4.ip_default_ttl=65 >> /etc/sysctl.conf
+
+Теперь нужно применить новые параметры конфигурации. Делается это следующей командой:
+
+sudo sysctl --system
+
+Перезагружаем ПК(!)
+
+
